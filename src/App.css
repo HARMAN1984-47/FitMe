@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  background: #050816;
+  font-family: Arial, sans-serif;
+}
+
+.main-layout {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.avatar-wrapper {
+  flex: 1;
+}
+
+.bottom-sections {
+  display: flex;
+  gap: 20px;
+}
+
+/* ======================= */
+/* TABLET */
+/* ======================= */
+
+@media (max-width: 1200px) {
+
+  .main-layout {
+    flex-direction: column;
+  }
+
+  .bottom-sections {
+    width: 100%;
+  }
+
+  .customize-panel,
+  .ai-panel {
+    flex: 1;
+  }
+}
+
+/* ======================= */
+/* MOBILE */
+/* ======================= */
+
+@media (max-width: 768px) {
+
+  .main-layout {
+    padding: 10px;
+    gap: 14px;
+  }
+
+  .bottom-sections {
+    flex-direction: column;
+  }
+
+  .customize-panel,
+  .avatar-preview,
+  .ai-panel {
+    width: 100%;
+    height: auto;
+
+    border-radius: 18px;
+    padding: 16px;
+  }
+
+  .avatar-preview {
+    min-height: 500px;
+  }
+}

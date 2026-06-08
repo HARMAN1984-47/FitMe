@@ -1,0 +1,267 @@
+/* AvatarPreview.css */
+
+.avatar-preview {
+  flex: 1;
+
+  height: calc(100vh - 100px);
+
+  background: #0b1020;
+
+  border: 1px solid #1d2338;
+  border-radius: 24px;
+
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+/* Top */
+
+.preview-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-left {
+  display: flex;
+  gap: 12px;
+}
+
+.top-left button {
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #141a2e;
+  color: white;
+
+  cursor: pointer;
+  font-size: 18px;
+}
+
+
+/* Avatar Container */
+
+.avatar-container {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+
+
+
+/* Avatar */
+
+.avatar-stage {
+  position: relative;
+
+  width: 520px;
+  height: 520px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Glow */
+
+.glow-ring {
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(124, 58, 237, 0.4),
+    transparent 70%
+  );
+
+  filter: blur(20px);
+}
+
+/* Avatar Image */
+
+.avatar-image {
+  width: 360px;
+  z-index: 2;
+
+  object-fit: contain;
+
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Bottom Ring */
+
+.avatar-stage::after {
+  content: "";
+
+  position: absolute;
+  bottom: 20px;
+
+  width: 340px;
+  height: 60px;
+
+  background: radial-gradient(
+    ellipse,
+    rgba(139, 92, 246, 0.9),
+    rgba(139, 92, 246, 0.1)
+  );
+
+  border-radius: 50%;
+
+  filter: blur(8px);
+}
+
+/* Animation */
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Bottom Buttons */
+
+.preview-bottom {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+
+  margin-top: 10px;
+}
+
+.preview-bottom button {
+  height: 52px;
+  padding: 0 24px;
+
+  border: 1px solid #252b44;
+  border-radius: 16px;
+
+  background: #141a2e;
+
+  color: white;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.preview-bottom button:hover {
+  border-color: #8b5cf6;
+}
+
+/* Features */
+
+.preview-features {
+  margin-top: 26px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+.feature-card {
+  background: #141a2e;
+
+  border: 1px solid #252b44;
+  border-radius: 20px;
+
+  padding: 18px;
+
+  display: flex;
+  gap: 14px;
+}
+
+.feature-card .icon {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 14px;
+
+  background: rgba(124, 58, 237, 0.2);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+}
+
+.feature-card h4 {
+  color: white;
+  margin-bottom: 6px;
+}
+
+.feature-card p {
+  color: #9ca3af;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+
+  .avatar-stage {
+    width: 100%;
+    height: 300px;
+  }
+
+  .avatar-image {
+    width: 180px;
+  }
+
+  .glow-ring {
+    width: 240px;
+    height: 240px;
+  }
+
+  .preview-tools {
+    position: static;
+
+    flex-direction: row;
+
+    justify-content: center;
+
+    transform: none;
+
+    margin-top: 10px;
+  }
+
+  .preview-tools button {
+    width: 70px;
+    height: 70px;
+  }
+
+  .preview-features {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-bottom {
+    flex-wrap: wrap;
+  }
+}
