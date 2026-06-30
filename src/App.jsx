@@ -1,18 +1,33 @@
-// App.jsx
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
 import CustomizePanel from "./CustomizePanel";
 import AvatarPreview from "./AvatarPreview";
 import AIStylist from "./AIStylist";
-import Svg from "./Svg";
-
-import "./App.css";
 
 function App() {
-  const[shirtColor,setShirtColor]= useState("#2068F5");
-  const[skinColor,setSkinColor] = useState("#FFDAB9")
-  const[bottomColor,setBottomColor] = useState("#2068F5")
-  const[pantColor,setPantColor] = useState("#2068F5")
+
+  const [shirtColor, setShirtColor] = useState("#2068F5");
+  const [skinColor, setSkinColor] = useState("#FFDAB9");
+  const [bottomColor, setBottomColor] = useState("#2068F5");
+  const [pantColor, setPantColor] = useState("#2068F5");
+
+  const applyLook = (look) => {
+
+   
+
+    if (look.shirt) {
+      setShirtColor(look.shirt);
+    }
+
+    if (look.pant) {
+      setPantColor(look.pant);
+    }
+
+    if (look.shoes) {
+      setBottomColor(look.shoes);
+    }
+
+  };
 
   return (
     <div>
@@ -26,11 +41,27 @@ function App() {
           padding: "20px",
         }}
       >
-        <CustomizePanel changeColorFunction={{setShirtColor,setSkinColor,setBottomColor,setPantColor}}/>
 
-        <AvatarPreview colorFromApp={{shirtColor,skinColor,bottomColor,pantColor}}/>
+        <CustomizePanel
+          changeColorFunction={{
+            setShirtColor,
+            setSkinColor,
+            setBottomColor,
+            setPantColor,
+          }}
+        />
 
-        <AIStylist />
+        <AvatarPreview
+          colorFromApp={{
+            shirtColor,
+            skinColor,
+            bottomColor,
+            pantColor,
+          }}
+        />
+
+        <AIStylist applyLook={applyLook} />
+
       </div>
 
     </div>
