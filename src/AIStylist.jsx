@@ -1,10 +1,10 @@
-// AIStylist.jsx
-import React, { useState } from "react";
 
+
+import React, { useState } from "react";
 import "./AIStylist.css";
 import { Send, Sparkles, ShoppingBag } from "lucide-react";
 
-export default function AIStylist({ applyLook}) {
+export default function AIStylist({ applyLook }) {
   const [input, setInput] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,37 +20,33 @@ export default function AIStylist({ applyLook}) {
     setIsLoading(true);
 
     try {
-      const API_KEY =  VITE_GROQ_API_KEY;
+      // FIX 1: API key ko environment variable se lena chahiye. 
+      // Apne project folder mein .env file banayein aur usme REACT_APP_GROQ_API_KEY=your_key_here likhein.
+      // Vite use kar rahe ho toh import.meta.env.VITE_GROQ_API_KEY likhna.
+      const API_KEY = process.env.REACT_APP_GROQ_API_KEY || "YOUR_API_KEY_HERE"; // Replace with your actual API key or use environment variable
 
       const url = "https://api.groq.com/openai/v1/chat/completions";
       const messagesForAPI = [
         {
           role: "system",
-         content: `
-You are a professional fashion stylist.
-
+          content: `You are a professional fashion stylist.
 Always respond ONLY in JSON.
-
 Example:
-
 {
  "message":"Olive shirt with beige pants creates a premium smart casual look.",
  "shirt":"#556B2F",
  "pant":"#F5F5DC",
  "shoes":"#FFFFFF"
 }
-
-No markdown.
-No extra text.
-`
-          },
+No markdown. No extra text.`,
+        },
         ...updatedHistory,
       ];
 
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${API_KEY}`,
         },
         body: JSON.stringify({
@@ -58,6 +54,10 @@ No extra text.
           messages: messagesForAPI,
         }),
       });
+
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
 
       const data = await response.json();
 
@@ -68,40 +68,36 @@ No extra text.
           { role: "assistant", content: "Error aa gaya bhai!" },
         ]);
       } else {
-       const rawResponse =
-data.choices[0].message.content;
+        const rawResponse = data.choices[0].message.content;
 
-try {
+        try {
+          // FIX 2: AI kabhi kabhi markdown ke bahar extra space laga deta hai, usko clean karne ka robust tarika
+          const cleanedResponse = rawResponse.replace(/```json|```/gi, "").trim();
+          const parsed = JSON.parse(cleanedResponse);
 
-  const parsed =
-    JSON.parse(rawResponse);
-
-  setChatHistory((prev) => [
-    ...prev,
-    {
-      role: "assistant",
-      content: parsed.message,
-      look: parsed,
-    },
-  ]);
-
-} catch {
-
-  setChatHistory((prev) => [
-    ...prev,
-    {
-      role: "assistant",
-      content: rawResponse,
-    },
-  ]);
-
-}
+          setChatHistory((prev) => [
+            ...prev,
+            {
+              role: "assistant",
+              content: parsed.message || "Here is a stylish look for you!", // Fallback message
+              look: parsed,
+            },
+          ]);
+        } catch {
+          setChatHistory((prev) => [
+            ...prev,
+            {
+              role: "assistant",
+              content: rawResponse,
+            },
+          ]);
+        }
       }
     } catch (error) {
       console.error(error);
       setChatHistory((prev) => [
         ...prev,
-        { role: "assistant", content: "Network error hai!" },
+        { role: "assistant", content: "Network error hai ya API limit cross ho gayi!" },
       ]);
     } finally {
       setIsLoading(false);
@@ -116,136 +112,141 @@ try {
           <h2>AI Stylist</h2>
           <p>Smart outfit recommendations based on your skin tone & wardrobe</p>
         </div>
-
         <div className="ai-badge">AI Powered</div>
       </div>
 
-     
-
-      {/* Footer Input */}
-      <div className="send-recive-box">
-       
-        {chatHistory.map((msg,index) =>(
-          <div key={index} 
-           style={{
-            display: "flex",
-              justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start',
-              marginBottom: '10px'
-           }}
+      {/* Chat Messages Area */}
+      <div className="send-recive-box" style={{ maxHeight: '400px', overflowY: 'auto', padding: '10px' }}>
+        {chatHistory.map((msg, index) => (
+          <div
+            key={index}
+            style={{
+              display: "flex",
+              justifyContent: msg.role === "user" ? "flex-end" : "flex-start",
+              marginBottom: "10px",
+            }}
           >
-              <div style={{ 
-                maxWidth: '75%', 
-                padding: '10px 15px', 
-                borderRadius: '15px', 
-                background: msg.role === 'user' ? ' #5b21b6' : '#141a2e', // User ke liye green, AI ke liye white
+            <div
+              style={{
+                maxWidth: "75%",
+                padding: "10px 15px",
+                borderRadius: "15px",
+                background: msg.role === "user" ? "#5b21b6" : "#1e293b",
                 color: "white",
-                // border: msg.role === 'user' ? 'none' : '1px solid #ddd',
-                boxShadow: '0 1px 2px rgba(0,0,0,0.1)'
-              }}>
-               
+                boxShadow: "0 1px 2px rgba(0,0,0,0.1)",
+              }}
+            >
               <div>
+                <div>{msg.content}</div>
 
-  <div>
-    {msg.content}
-  </div>
-
-  {msg.look && (
-
-    <>
-      <div
-        style={{
-          display: "flex",
-          gap: "8px",
-          marginTop: "10px",
-        }}
-      >
-
-        <span
-          style={{
-            width: "20px",
-            height: "20px",
-            borderRadius: "50%",
-            background: msg.look.shirt,
-          }}
-        />
-
-        <span
-          style={{
-            width: "20px",
-            height: "20px",
-            borderRadius: "50%",
-            background: msg.look.pant,
-          }}
-        />
-
-        <span
-          style={{
-            width: "20px",
-            height: "20px",
-            borderRadius: "50%",
-            background: msg.look.shoes,
-          }}
-        />
-
-      </div>
-
-      <button
-        style={{
-          marginTop: "10px",
-          background: "#7c3aed",
-          color: "white",
-          border: "none",
-          padding: "8px 12px",
-          borderRadius: "8px",
-          cursor: "pointer",
-        }}
-        onClick={() =>
-          applyLook(msg.look)
-        }
-      >
-        Apply Look
-      </button>
-
-    </>
-  )}
-
-</div>
+                {/* FIX 3: msg.look ke andar optional chaining (?. ) lagaya gaya hai. */}
+                {msg.look && (
+                  <>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "8px",
+                        marginTop: "10px",
+                      }}
+                    >
+                      {msg.look?.shirt && (
+                        <span
+                          style={{
+                            width: "20px",
+                            height: "20px",
+                            borderRadius: "50%",
+                            background: msg.look.shirt,
+                            border: "1px solid rgba(255,255,255,0.2)"
+                          }}
+                          title="Shirt Color"
+                        />
+                      )}
+                      {msg.look?.pant && (
+                        <span
+                          style={{
+                            width: "20px",
+                            height: "20px",
+                            borderRadius: "50%",
+                            background: msg.look.pant,
+                            border: "1px solid rgba(255,255,255,0.2)"
+                          }}
+                          title="Pant Color"
+                        />
+                      )}
+                      {msg.look?.shoes && (
+                        <span
+                          style={{
+                            width: "20px",
+                            height: "20px",
+                            borderRadius: "50%",
+                            background: msg.look.shoes,
+                            border: "1px solid rgba(255,255,255,0.2)"
+                          }}
+                          title="Shoes Color"
+                        />
+                      )}
+                    </div>
+                    <button
+                      style={{
+                        marginTop: "10px",
+                        background: "#7c3aed",
+                        color: "white",
+                        border: "none",
+                        padding: "8px 12px",
+                        borderRadius: "8px",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => applyLook(msg.look)}
+                    >
+                      Apply Look
+                    </button>
+                  </>
+                )}
               </div>
-
+            </div>
           </div>
         ))}
 
-         {isLoading && (
-          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-            <div style={{ padding: '10px 15px', borderRadius: '15px', backgroundColor: '#ffffff', fontStyle: 'italic', color: '#888' }}>
+        {isLoading && (
+          <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <div
+              style={{
+                padding: "10px 15px",
+                borderRadius: "15px",
+                backgroundColor: "#1e293b",
+                fontStyle: "italic",
+                color: "#cbd5e1",
+              }}
+            >
               AI soch raha hai...
             </div>
           </div>
         )}
       </div>
+
+      {/* Footer Input */}
       <div className="ai-input-box">
         <input
           type="text"
           value={input}
           placeholder="Ask AI anything about fashion..."
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => (e.key === "Enter" ? fetchAIResponse() : null)}
+          onKeyDown={(e) => (e.key === "Enter" ? fetchAIResponse() : null)}
         />
-
-        <button    onClick={fetchAIResponse}
-          disabled={isLoading || input.length === 0}>
-       
+        <button
+          onClick={fetchAIResponse}
+          disabled={isLoading || input.trim().length === 0}
+        >
           <Send size={18} />
         </button>
       </div>
 
-      {/* Extra */}
+      {/* Extra Actions */}
       <div className="extra-actions">
         <button>
           <ShoppingBag size={16} />
           Shop Similar
         </button>
-
         <button>
           <Sparkles size={16} />
           Generate More
@@ -254,3 +255,4 @@ try {
     </div>
   );
 }
+
