@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background: #050816;
+  background: var(--bg-main);
   font-family: Arial, sans-serif;
 }
 
@@ -24,7 +24,6 @@ body {
 /* ======================= */
 
 @media (max-width: 1200px) {
-
   .main-layout {
     flex-direction: column;
   }
@@ -44,7 +43,6 @@ body {
 /* ======================= */
 
 @media (max-width: 768px) {
-
   .main-layout {
     padding: 10px;
     gap: 14px;

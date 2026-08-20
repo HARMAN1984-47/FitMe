@@ -16,11 +16,11 @@ const topColorsArray = [
   "#FF0000",
   "#00FF00",
   "#0000FF",
-  "#FFFF00",
+  "var(--bg-card)F00",
   "#FF00FF",
   "#00FFFF",
   "#000000",
-  "#FFFFFF",
+  "var(--bg-card)FFF",
   "#808080",
   "#FFA500",
   "#800080",
@@ -38,11 +38,11 @@ const bottomColorsArray = [
   "#FF0000",
   "#00FF00",
   "#0000FF",
-  "#FFFF00",
+  "var(--bg-card)F00",
   "#FF00FF",
   "#00FFFF",
   "#000000",
-  "#FFFFFF",
+  "var(--bg-card)FFF",
   "#808080",
   "#FFA500",
   "#800080",
@@ -57,8 +57,11 @@ const bottomColorsArray = [
   "#34495e",
 ];
 
-export default function CustomizePanel({ changeColorFunction }) {
-  const [activebtn, setActivebBtn] = useState(1);
+export default function CustomizePanel({
+  changeColorFunction,
+  activebtn,
+  setActivebBtn,
+}) {
   const [topWearcategory, setTopWearCategory] = useState("All");
 
   const [selectedTopColor, setSelectedTopColor] = useState("#3498db");
@@ -82,14 +85,14 @@ export default function CustomizePanel({ changeColorFunction }) {
       {/* Gender */}
       <div className="gender-toggle">
         <button
-          className={`${activebtn === 1 ? "active" : ""}`}
-          onClick={() => setActivebBtn(1)}
+          className={`${activebtn === true ? "active" : ""}`}
+          onClick={() => setActivebBtn(true)}
         >
           Male
         </button>
         <button
-          className={`${activebtn === 2 ? "active" : ""}`}
-          onClick={() => setActivebBtn(2)}
+          className={`${activebtn === false ? "active" : ""}`}
+          onClick={() => setActivebBtn(false)}
         >
           Female
         </button>
@@ -106,8 +109,8 @@ export default function CustomizePanel({ changeColorFunction }) {
               className={selectedBodyColor === value ? "selected" : ""}
               style={{ background: value }}
               onClick={() => {
-                setSelectedBodyColor(value)
-                changeColorFunction.setSkinColor(value)
+                setSelectedBodyColor(value);
+                changeColorFunction.setSkinColor(value);
               }}
             ></span>
           ))}
@@ -219,19 +222,19 @@ export default function CustomizePanel({ changeColorFunction }) {
             onClick={() => setTopWearCategory("TShirt")}
             className={`${topWearcategory === "TShirt" ? "active" : ""}`}
           >
-            T-Shirt
+            pant
           </button>
           <button
             onClick={() => setTopWearCategory("Shirt")}
             className={`${topWearcategory === "Shirt" ? "active" : ""}`}
           >
-            Shirt
+            Pagama
           </button>
           <button
             onClick={() => setTopWearCategory("Hoodie")}
             className={`${topWearcategory === "Hoodie" ? "active" : ""}`}
           >
-            Hoodie
+            Jeans
           </button>
         </div>
 
@@ -244,7 +247,7 @@ export default function CustomizePanel({ changeColorFunction }) {
               style={{ backgroundColor: value }}
               onClick={() => {
                 // setSelectedPantColor(value)
-                changeColorFunction.setPantColor(value)
+                changeColorFunction.setPantColor(value);
               }}
             ></span>
           ))}
@@ -268,19 +271,19 @@ export default function CustomizePanel({ changeColorFunction }) {
             onClick={() => setTopWearCategory("TShirt")}
             className={`${topWearcategory === "TShirt" ? "active" : ""}`}
           >
-            T-Shirt
+            slipper
           </button>
           <button
             onClick={() => setTopWearCategory("Shirt")}
             className={`${topWearcategory === "Shirt" ? "active" : ""}`}
           >
-            Shirt
+            formal shoes
           </button>
           <button
             onClick={() => setTopWearCategory("Hoodie")}
             className={`${topWearcategory === "Hoodie" ? "active" : ""}`}
           >
-            Hoodie
+            sports shoes
           </button>
         </div>
 
@@ -307,7 +310,7 @@ export default function CustomizePanel({ changeColorFunction }) {
           </div>
         </div>
 
-          <h3 style={{ marginTop: "20px" }}>Color</h3>
+        <h3 style={{ marginTop: "20px" }}>Color</h3>
         <div className="colors" style={{ marginTop: "20px" }}>
           {bottomColorsArray.map((value, index) => (
             <span
@@ -316,7 +319,7 @@ export default function CustomizePanel({ changeColorFunction }) {
               style={{ backgroundColor: value }}
               onClick={() => {
                 // setSelectedBottomColor(value)
-                changeColorFunction.setBottomColor(value)
+                changeColorFunction.setBottomColor(value);
               }}
             ></span>
           ))}

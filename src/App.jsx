@@ -1,70 +1,47 @@
-import React, { useState } from "react";
+import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
+import { useState } from "react";
+
 import Navbar from "./Navbar";
-import CustomizePanel from "./CustomizePanel";
-import AvatarPreview from "./AvatarPreview";
-import AIStylist from "./AIStylist";
+
+
+import Home from "./Home..jsx";
+import SavedOutfits from "./SavedOutfits.jsx";
+import AboutMe from "./AboutMe.jsx";
+import Profile from "./Profile.jsx";
+import SignUp from "./SignUp.jsx";
+import Login from "./Login.jsx";
+import Settings from "./Settings.jsx";
+import RefrshHandler from "./RefrshHandler.jsx";
+
+
 
 function App() {
-
-  const [shirtColor, setShirtColor] = useState("#2068F5");
-  const [skinColor, setSkinColor] = useState("#FFDAB9");
-  const [bottomColor, setBottomColor] = useState("#2068F5");
-  const [pantColor, setPantColor] = useState("#2068F5");
-
-  const applyLook = (look) => {
-
-   
-
-    if (look.shirt) {
-      setShirtColor(look.shirt);
-    }
-
-    if (look.pant) {
-      setPantColor(look.pant);
-    }
-
-    if (look.shoes) {
-      setBottomColor(look.shoes);
-    }
-
-  };
-
+  const [isAuthenticated,setIsAuthenticated] =useState(false)
+  const PrivateRoute = ({element})=>{
+    return isAuthenticated ? element  : <Navigate to="/login"/>
+  }
   return (
-    <div>
+    <>
 
+    <RefrshHandler setIsAuthenticated={setIsAuthenticated} />
       <Navbar />
 
-      <div
-        style={{
-          display: "flex",
-          gap: "20px",
-          padding: "20px",
-        }}
-      >
+      <Routes>
+        <Route path="/" element=  {<PrivateRoute element ={<Home/>}/>} />
+        {/* upar wali line ka hai{<Navigate to="/home"/>} /> */}
+        <Route path="/Home" element={<PrivateRoute element ={<Home/>}/>} />
+        <Route path="/SavedOutfits" element={<PrivateRoute element ={<SavedOutfits/>}/>} />
 
-        <CustomizePanel
-          changeColorFunction={{
-            setShirtColor,
-            setSkinColor,
-            setBottomColor,
-            setPantColor,
-          }}
-        />
+        <Route path="/AboutMe" element={<PrivateRoute element ={<AboutMe/>}/>} />
+        <Route path="/signUp" element={<SignUp />} caseSensitive/>
+        <Route path="/login" element={<Login />} caseSensitive />
+        <Route path="/settings" element={<Settings />} />
 
-        <AvatarPreview
-          colorFromApp={{
-            shirtColor,
-            skinColor,
-            bottomColor,
-            pantColor,
-          }}
-        />
 
-        <AIStylist applyLook={applyLook} />
 
-      </div>
 
-    </div>
+      </Routes>
+    </>
   );
 }
 

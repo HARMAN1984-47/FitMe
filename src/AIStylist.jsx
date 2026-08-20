@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import "./AIStylist.css";
 import { Send, Sparkles, ShoppingBag } from "lucide-react";
@@ -20,12 +18,17 @@ export default function AIStylist({ applyLook }) {
     setIsLoading(true);
 
     try {
-      // FIX 1: API key ko environment variable se lena chahiye. 
-      // Apne project folder mein .env file banayein aur usme REACT_APP_GROQ_API_KEY=your_key_here likhein.
-      // Vite use kar rahe ho toh import.meta.env.VITE_GROQ_API_KEY likhna.
-      const API_KEY = process.env.REACT_APP_GROQ_API_KEY || "YOUR_API_KEY_HERE"; // Replace with your actual API key or use environment variable
+      // FIX 1: 'h' typo hata diya gaya hai
+      const API_KEY = import.meta.env.VITE_API_KEY;
 
-      const url = "https://api.groq.com/openai/v1/chat/completions";
+      const url = import.meta.env.VITE_API_URL;
+
+      // FIX 2: API ko sirf role aur content bhejna hai, 'look' property yahan filter ho jayegi
+      const cleanHistoryForAPI = updatedHistory.map((msg) => ({
+        role: msg.role,
+        content: msg.content,
+      }));
+
       const messagesForAPI = [
         {
           role: "system",
@@ -36,11 +39,11 @@ Example:
  "message":"Olive shirt with beige pants creates a premium smart casual look.",
  "shirt":"#556B2F",
  "pant":"#F5F5DC",
- "shoes":"#FFFFFF"
+ "shoes":"var(--bg-card)FFF"
 }
 No markdown. No extra text.`,
         },
-        ...updatedHistory,
+        ...cleanHistoryForAPI, // Ab API ko clean array jayega
       ];
 
       const response = await fetch(url, {
@@ -50,7 +53,7 @@ No markdown. No extra text.`,
           Authorization: `Bearer ${API_KEY}`,
         },
         body: JSON.stringify({
-          model: "llama-3.1-8b-instant",
+          model: "openai/gpt-oss-120b",
           messages: messagesForAPI,
         }),
       });
@@ -71,16 +74,17 @@ No markdown. No extra text.`,
         const rawResponse = data.choices[0].message.content;
 
         try {
-          // FIX 2: AI kabhi kabhi markdown ke bahar extra space laga deta hai, usko clean karne ka robust tarika
-          const cleanedResponse = rawResponse.replace(/```json|```/gi, "").trim();
+          const cleanedResponse = rawResponse
+            .replace(/```json|```/gi, "")
+            .trim();
           const parsed = JSON.parse(cleanedResponse);
 
           setChatHistory((prev) => [
             ...prev,
             {
               role: "assistant",
-              content: parsed.message || "Here is a stylish look for you!", // Fallback message
-              look: parsed,
+              content: parsed.message || "Here is a stylish look for you!",
+              look: parsed, // UI ke liye save ho raha hai, par next time api ko send nahi hoga
             },
           ]);
         } catch {
@@ -97,7 +101,10 @@ No markdown. No extra text.`,
       console.error(error);
       setChatHistory((prev) => [
         ...prev,
-        { role: "assistant", content: "Network error hai ya API limit cross ho gayi!" },
+        {
+          role: "assistant",
+          content: "Network error hai ya API limit cross ho gayi!",
+        },
       ]);
     } finally {
       setIsLoading(false);
@@ -116,7 +123,10 @@ No markdown. No extra text.`,
       </div>
 
       {/* Chat Messages Area */}
-      <div className="send-recive-box" style={{ maxHeight: '400px', overflowY: 'auto', padding: '10px' }}>
+      <div
+        className="send-recive-box"
+        style={{ maxHeight: "400px", overflowY: "auto", padding: "10px" }}
+      >
         {chatHistory.map((msg, index) => (
           <div
             key={index}
@@ -139,7 +149,6 @@ No markdown. No extra text.`,
               <div>
                 <div>{msg.content}</div>
 
-                {/* FIX 3: msg.look ke andar optional chaining (?. ) lagaya gaya hai. */}
                 {msg.look && (
                   <>
                     <div
@@ -156,7 +165,7 @@ No markdown. No extra text.`,
                             height: "20px",
                             borderRadius: "50%",
                             background: msg.look.shirt,
-                            border: "1px solid rgba(255,255,255,0.2)"
+                            border: "1px solid rgba(255,255,255,0.2)",
                           }}
                           title="Shirt Color"
                         />
@@ -168,7 +177,7 @@ No markdown. No extra text.`,
                             height: "20px",
                             borderRadius: "50%",
                             background: msg.look.pant,
-                            border: "1px solid rgba(255,255,255,0.2)"
+                            border: "1px solid rgba(255,255,255,0.2)",
                           }}
                           title="Pant Color"
                         />
@@ -180,7 +189,7 @@ No markdown. No extra text.`,
                             height: "20px",
                             borderRadius: "50%",
                             background: msg.look.shoes,
-                            border: "1px solid rgba(255,255,255,0.2)"
+                            border: "1px solid rgba(255,255,255,0.2)",
                           }}
                           title="Shoes Color"
                         />
@@ -255,4 +264,3 @@ No markdown. No extra text.`,
     </div>
   );
 }
-

@@ -7,7 +7,7 @@
 }
 
 body {
-  background: #050816;
+  background: var(--bg-main);
   font-family: Arial, sans-serif;
 }
 
@@ -16,8 +16,8 @@ body {
 .navbar {
   width: 100%;
   height: 80px;
-  background: #070b1a;
-  border-bottom: 1px solid #1c2238;
+  background: var(--bg-navbar);
+  border-bottom: 1px solid var(--border-navbar);
 
   display: flex;
   align-items: center;
@@ -73,7 +73,7 @@ body {
 }
 
 .logo-subtitle {
-  color: #8b90a7;
+  color: var(--text-muted);
   font-size: 13px;
   margin-top: 2px;
 }
@@ -82,26 +82,31 @@ body {
 
 .nav-links {
   display: flex;
+  color: var(--text-secondary);
   gap: 34px;
 }
 
-.nav-links button {
+/* CHANGE: 'button' ki jagah 'a' kar diya hai kyunki NavLink <a> tag banata hai */
+.nav-links a {
   background: transparent;
   border: none;
 
-  color: #c5c8d4;
+  color: var(--text-secondary);
   font-size: 16px;
   font-weight: 500;
+  text-decoration: none; /* CHANGE: Yahan bhi text-decoration none add kar diya taaki inline na likhna pade */
 
   cursor: pointer;
   transition: 0.3s;
 }
 
-.nav-links button:hover {
-  color: white;
+/* CHANGE: 'button:hover' ki jagah 'a:hover' */
+.nav-links a:hover {
+  color: var( --text-primary);
 }
 
-.nav-links .active {
+/* CHANGE: Specificity badhane ke liye 'a.active' kar diya hai */
+.nav-links a.active {
   color: #8b5cf6;
 }
 
@@ -119,8 +124,8 @@ body {
   width: 260px;
   height: 46px;
 
-  background: #101528;
-  border: 1px solid #252b44;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
 
   border-radius: 12px;
 
@@ -129,7 +134,7 @@ body {
 
   padding: 0 15px;
 
-  color: #8b90a7;
+  color: var(--text-muted);
 }
 
 .search-box input {
@@ -188,8 +193,8 @@ body {
   width: 44px;
   height: 44px;
 
-  background: #101528;
-  border: 1px solid #252b44;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
 
   border-radius: 12px;
 
@@ -197,7 +202,7 @@ body {
   align-items: center;
   justify-content: center;
 
-  color: white;
+  color: var(--text-primary);;
 
   cursor: pointer;
   transition: 0.3s;
@@ -205,6 +210,7 @@ body {
 
 .icon-btn:hover {
   border-color: #8b5cf6;
+  
 }
 
 /* Profile */
@@ -214,8 +220,8 @@ body {
   align-items: center;
   gap: 12px;
 
-  background: #101528;
-  border: 1px solid #252b44;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
 
   padding: 8px 14px;
   border-radius: 14px;
@@ -236,13 +242,14 @@ body {
   object-fit: cover;
 }
 
+
 .profile-box h3 {
-  color: white;
+  color: var(--text-primary);
   font-size: 14px;
 }
 
 .profile-box p {
-  color: #8b90a7;
+  color: var(--text-muted);
   font-size: 12px;
   margin-top: 2px;
 }
@@ -251,7 +258,6 @@ body {
 /* ======================= */
 
 @media (max-width: 768px) {
-
   .navbar {
     height: auto;
 
@@ -287,7 +293,6 @@ body {
 }
 
 @media (max-width: 500px) {
-
   .search-box {
     display: none;
   }

@@ -4,8 +4,8 @@
   width: 420px;
   height: calc(100vh - 100px);
 
-  background: #0b1020;
-  border: 1px solid #1d2338;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
 
   border-radius: 24px;
 
@@ -39,7 +39,7 @@
 }
 
 .panel-header p {
-  color: #8b90a7;
+  color: var(--text-muted);
   margin-top: 4px;
 }
 
@@ -50,7 +50,7 @@
   border: none;
   border-radius: 10px;
 
-  background: #141a2e;
+  background: var(--element-bg);
   color: white;
 
   cursor: pointer;
@@ -63,7 +63,7 @@
   display: flex;
   margin-top: 24px;
 
-  background: #13192b;
+  background: var(--element-bg);
   border-radius: 14px;
 
   overflow: hidden;
@@ -77,18 +77,14 @@
   border: none;
   background: transparent;
 
-  color: #bfc5d9;
+  color:  var(--text-muted);
   font-size: 15px;
 
   cursor: pointer;
 }
 
 .gender-toggle .active {
-  background: linear-gradient(
-    135deg,
-    #7c3aed,
-    #5b21b6
-  );
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
 
   color: white;
 }
@@ -125,7 +121,7 @@
 .skin-tones .select:hover,
 .select.selected {
   border-color: white;
-  box-shadow: 0 0 10px #ffffff90;
+  box-shadow: 0 0 10px var(--bg-card) fff90;
 }
 
 /* Section title */
@@ -155,8 +151,8 @@
 .hair-card {
   height: 90px;
 
-  background: #141a2e;
-  border: 1px solid #232944;
+  background: var(--element-bg);
+  border: 1px solid var(--element-border);
 
   border-radius: 16px;
 
@@ -189,7 +185,7 @@
   border-radius: 12px;
   border: none;
 
-  background: #141a2e;
+  background: var(--element-bg);
   color: #c2c7da;
 
   cursor: pointer;
@@ -211,8 +207,8 @@
 .cloth-card {
   height: 100px;
 
-  background: #141a2e;
-  border: 1px solid #232944;
+  background: var(--element-bg);
+  border: 1px solid var(--element-border);
 
   border-radius: 18px;
 
@@ -228,7 +224,6 @@
   height: 100%;
   object-fit: cover;
   border-radius: 18px;
-
 }
 
 .cloth-card.active {
@@ -248,8 +243,8 @@
 .colors::-webkit-scrollbar {
   width: 6px;
 }
-.colors::-webkit-scrollbar-thumb{
-   background: #7c3aed;
+.colors::-webkit-scrollbar-thumb {
+  background: #7c3aed;
   border-radius: 10px;
 }
 
@@ -263,7 +258,7 @@
   border: 2px solid transparent;
 }
 
-.top-wear-circle{
+.top-wear-circle {
   width: 34px;
   height: 34px;
 
@@ -275,7 +270,7 @@
 
 .colors .selected {
   border-color: white;
-  box-shadow: 0 0 12px #ffffff90;
+  box-shadow: 0 0 12px var(--bg-card) fff90;
 }
 
 /* Buttons */
@@ -290,10 +285,8 @@
 .reset-btn {
   flex: 1;
   height: 52px;
-
   border: none;
   border-radius: 16px;
-
   font-size: 15px;
   font-weight: 600;
 
@@ -301,22 +294,17 @@
 }
 
 .random-btn {
-  background: linear-gradient(
-    135deg,
-    #7c3aed,
-    #5b21b6
-  );
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
 
   color: white;
 }
 
 .reset-btn {
-  background: #141a2e;
+  background: var(--element-bg);
   color: white;
 }
 
 @media (max-width: 768px) {
-
   .customize-panel {
     width: 100%;
   }
@@ -336,7 +324,6 @@
 }
 
 @media (max-width: 500px) {
-
   .hair-grid,
   .cloth-grid {
     grid-template-columns: 1fr;

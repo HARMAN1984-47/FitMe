@@ -1,0 +1,42 @@
+
+
+.about-container {
+  background-color: var(--panel-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--panel-border);
+  padding: 40px;
+  border-radius: 16px;
+  font-family: sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.about-title {
+  color: var(--text-primary);
+  font-size: 28px;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.about-text {
+  font-size: 16px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.about-list {
+  padding-left: 20px;
+  margin-bottom: 40px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.about-list li {
+  margin-bottom: 10px;
+}
+
+.about-accent {
+  color: #8b5cf6; /* आपके प्रोजेक्ट के पर्पल थीम से मैच करता हुआ */
+}

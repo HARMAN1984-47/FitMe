@@ -4,8 +4,8 @@
   width: 400px;
   height: calc(100vh - 100px);
 
-  background: #0b1020;
-  border: 1px solid #1d2338;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
 
   border-radius: 24px;
 
@@ -16,11 +16,11 @@
 
   overflow-y: auto;
 }
-.send-recive-box{
+.send-recive-box {
   height: 400px;
   margin-top: 5px;
-  overflow-y: scroll; 
-  overflow-x: hidden;  
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .send-recive-box::-webkit-scrollbar {
   width: 6px;
@@ -28,7 +28,8 @@
 
 .send-recive-box::-webkit-scrollbar-thumb {
   background: #7c3aed;
-  border-radius: 10px;}
+  border-radius: 10px;
+}
 /* Scroll */
 
 .ai-panel::-webkit-scrollbar {
@@ -54,7 +55,7 @@
 }
 
 .ai-header p {
-  color: #8b90a7;
+  color: var(--text-muted);
   margin-top: 2px;
   line-height: 1.5;
   font-size: 14px;
@@ -108,18 +109,14 @@
 }
 
 .user-chat .chat-bubble {
-  background: linear-gradient(
-    135deg,
-    #7c3aed,
-    #5b21b6
-  );
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
 
   color: white;
 }
 
 .ai-chat .chat-bubble {
-  background: #141a2e;
-  border: 1px solid #252b44;
+  background: var(--element-bg);
+  border: 1px solid var(--border-color);
 
   color: #d1d5db;
 }
@@ -129,8 +126,8 @@
 .suggestion-box {
   margin-top: 28px;
 
-  background: #141a2e;
-  border: 1px solid #252b44;
+  background: var(--element-bg);
+  border: 1px solid var(--border-color);
 
   border-radius: 20px;
 
@@ -187,9 +184,9 @@
 }
 
 .outfit-card {
-  background: #141a2e;
+  background: var(--element-bg);
 
-  border: 1px solid #252b44;
+  border: 1px solid var(--border-color);
   border-radius: 18px;
 
   padding: 14px;
@@ -233,8 +230,8 @@
 .tips-box {
   margin-top: 28px;
 
-  background: #141a2e;
-  border: 1px solid #252b44;
+  background: var(--element-bg);
+  border: 1px solid var(--border-color);
 
   border-radius: 20px;
 
@@ -255,8 +252,8 @@
 
   height: 58px;
 
-  background: #141a2e;
-  border: 1px solid #252b44;
+  background: var(--element-bg);
+  border: 1px solid var(--border-color);
 
   border-radius: 18px;
 
@@ -290,11 +287,7 @@
   border: none;
   border-radius: 14px;
 
-  background: linear-gradient(
-    135deg,
-    #7c3aed,
-    #5b21b6
-  );
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
 
   color: white;
 
@@ -319,10 +312,10 @@
 
   height: 35px;
 
-  border: 1px solid #252b44;
+  border: 1px solid var(--border-color);
   border-radius: 16px;
 
-  background: #141a2e;
+  background: var(--element-bg);
 
   color: white;
 
@@ -340,7 +333,6 @@
 }
 
 @media (max-width: 768px) {
-
   .ai-panel {
     width: 100%;
   }
@@ -355,7 +347,6 @@
 }
 
 @media (max-width: 500px) {
-
   .outfit-grid {
     grid-template-columns: 1fr;
   }
