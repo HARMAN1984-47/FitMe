@@ -15,6 +15,20 @@ export default function Navbar() {
   useEffect(()=>{
    setLoggedInUser(localStorage.getItem('loggedInUser'));
   },[])
+
+
+  useEffect(() => {
+    if (isOn) {
+      document.documentElement.setAttribute("data-theme", "light");
+    } else {
+      document.documentElement.removeAttribute(" data-theme", "light");
+      document.documentElement.setAttribute("data-theme", "dark");
+
+    }
+    
+
+
+  }, [isOn]);
   
   return (
     <>
@@ -70,7 +84,7 @@ export default function Navbar() {
           </div>
 
           {/* Notification */}
-          <button className="icon-btn" onClick={() => handleToggle(isOn,setIsOn)}>{isOn?'on':'off'}</button>
+          <button className="icon-btn" onClick={() => handleToggle(isOn,setIsOn)}>{isOn?'☀️' : '🌙'}</button>
 
           <NavLink
             to="/settings"
