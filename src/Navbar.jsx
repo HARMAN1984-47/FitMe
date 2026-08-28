@@ -79,9 +79,9 @@ export default function Navbar() {
         {/* Right */}
         <div className="navbar-right">
           {/* Search */}
-          <div className="search-box">
+          {/* <div className="search-box">
             <input type="text" placeholder="Search outfits..." />
-          </div>
+          </div> */}
 
           {/* Notification */}
           <button className="icon-btn" onClick={() => handleToggle(isOn,setIsOn)}>{isOn?'☀️' : '🌙'}</button>
