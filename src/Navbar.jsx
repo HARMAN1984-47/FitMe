@@ -57,6 +57,13 @@ export default function Navbar() {
             >
               Home
             </NavLink>
+             <NavLink
+              to="/LookBestc"
+              style={{ textDecoration: "none" }}
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              LookBestc
+            </NavLink>
             <NavLink
               to="/SavedOutfits"
               style={{ textDecoration: "none" }}
@@ -106,7 +113,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <div style={{ padding: "20px" }}>
+      <div style={{ padding: "10px" }}>
         <Outlet />
       </div>
     </>

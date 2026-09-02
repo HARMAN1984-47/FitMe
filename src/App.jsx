@@ -12,6 +12,8 @@ import SignUp from "./SignUp.jsx";
 import Login from "./Login.jsx";
 import Settings from "./Settings.jsx";
 import RefrshHandler from "./RefrshHandler.jsx";
+import LookBestc from "./LookBestc.jsx";
+
 
 
 
@@ -31,6 +33,7 @@ function App() {
         {/* upar wali line ka hai{<Navigate to="/home"/>} /> */}
         <Route path="/Home" element={<PrivateRoute element ={<Home/>}/>} />
         <Route path="/SavedOutfits" element={<PrivateRoute element ={<SavedOutfits/>}/>} />
+        <Route path="/LookBestc" element={<PrivateRoute element ={<LookBestc/>}/>} />
 
         <Route path="/AboutMe" element={<PrivateRoute element ={<AboutMe/>}/>} />
         <Route path="/signUp" element={<SignUp />} caseSensitive/>

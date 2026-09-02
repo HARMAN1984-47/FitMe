@@ -250,17 +250,6 @@ No markdown. No extra text.`,
         </button>
       </div>
 
-      {/* Extra Actions */}
-      <div className="extra-actions">
-        <button>
-          <ShoppingBag size={16} />
-          Shop Similar
-        </button>
-        <button>
-          <Sparkles size={16} />
-          Generate More
-        </button>
-      </div>
     </div>
   );
 }

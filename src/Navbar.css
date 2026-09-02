@@ -31,7 +31,7 @@ body {
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 500px;
+  gap: 400px;
 }
 
 /* Logo */
@@ -102,7 +102,7 @@ body {
 
 /* CHANGE: 'button:hover' ki jagah 'a:hover' */
 .nav-links a:hover {
-  color: var( --text-primary);
+  color: var(--text-primary);
 }
 
 /* CHANGE: Specificity badhane ke liye 'a.active' kar diya hai */
@@ -202,7 +202,7 @@ body {
   align-items: center;
   justify-content: center;
 
-  color: var(--text-primary);;
+  color: var(--text-primary);
 
   cursor: pointer;
   transition: 0.3s;
@@ -210,7 +210,6 @@ body {
 
 .icon-btn:hover {
   border-color: #8b5cf6;
-  
 }
 
 /* Profile */
@@ -242,7 +241,6 @@ body {
   object-fit: cover;
 }
 
-
 .profile-box h3 {
   color: var(--text-primary);
   font-size: 14px;
@@ -253,9 +251,7 @@ body {
   font-size: 12px;
   margin-top: 2px;
 }
-/* ======================= */
 /* MOBILE NAVBAR */
-/* ======================= */
 
 @media (max-width: 768px) {
   .navbar {

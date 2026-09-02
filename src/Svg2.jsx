@@ -15,10 +15,10 @@ const GirlSvg = ({ props, shirtColorForSvg }) => (
     }}
     {...props}
   >
-    {/* =====================================================
+    {/* ============
         GIRL SVG
         Face + Hair + T-Shirt + Jeans + Shoes
-        ===================================================== */}
+        ============ */}
 
     {/* ===================== BACK HAIR ===================== */}
 
@@ -185,53 +185,19 @@ const GirlSvg = ({ props, shirtColorForSvg }) => (
 
     {/* Left eye */}
 
-    <ellipse
-      cx="226"
-      cy="155"
-      rx="18"
-      ry="12"
-      fill="#FFFFFF"
-    />
+    <ellipse cx="226" cy="155" rx="18" ry="12" fill="#FFFFFF" />
 
-    <ellipse
-      cx="228"
-      cy="156"
-      rx="8"
-      ry="9"
-      fill="#38251F"
-    />
+    <ellipse cx="228" cy="156" rx="8" ry="9" fill="#38251F" />
 
-    <circle
-      cx="231"
-      cy="152"
-      r="3"
-      fill="#FFFFFF"
-    />
+    <circle cx="231" cy="152" r="3" fill="#FFFFFF" />
 
     {/* Right eye */}
 
-    <ellipse
-      cx="323"
-      cy="155"
-      rx="18"
-      ry="12"
-      fill="#FFFFFF"
-    />
+    <ellipse cx="323" cy="155" rx="18" ry="12" fill="#FFFFFF" />
 
-    <ellipse
-      cx="321"
-      cy="156"
-      rx="8"
-      ry="9"
-      fill="#38251F"
-    />
+    <ellipse cx="321" cy="156" rx="8" ry="9" fill="#38251F" />
 
-    <circle
-      cx="324"
-      cy="152"
-      r="3"
-      fill="#FFFFFF"
-    />
+    <circle cx="324" cy="152" r="3" fill="#FFFFFF" />
 
     {/* Eyelashes */}
 
@@ -292,9 +258,9 @@ const GirlSvg = ({ props, shirtColorForSvg }) => (
       "
     />
 
-    {/* =====================================================
+    {/* ============
         T-SHIRT
-        ===================================================== */}
+        ============ */}
 
     <path
       fill={shirtColorForSvg.shirtColor}
@@ -444,18 +410,11 @@ const GirlSvg = ({ props, shirtColorForSvg }) => (
 
     {/* Belt buckle */}
 
-    <rect
-      x="258"
-      y="533"
-      width="24"
-      height="18"
-      rx="3"
-      fill="#D6AE48"
-    />
+    <rect x="258" y="533" width="24" height="18" rx="3" fill="#D6AE48" />
 
-    {/* =====================================================
+    {/* ============
         LEFT JEANS LEG
-        ===================================================== */}
+        ============ */}
 
     <path
       fill={shirtColorForSvg.pantColor}
@@ -478,9 +437,9 @@ const GirlSvg = ({ props, shirtColorForSvg }) => (
       "
     />
 
-    {/* =====================================================
+    {/* ============
         RIGHT JEANS LEG
-        ===================================================== */}
+        ============ */}
 
     <path
       fill={shirtColorForSvg.pantColor}
@@ -505,12 +464,7 @@ const GirlSvg = ({ props, shirtColorForSvg }) => (
 
     {/* Center seam */}
 
-    <path
-      d="M270 585 L270 805"
-      fill="none"
-      stroke="#315C90"
-      strokeWidth="5"
-    />
+    <path d="M270 585 L270 805" fill="none" stroke="#315C90" strokeWidth="5" />
 
     {/* ===================== JEANS POCKETS ===================== */}
 
@@ -570,9 +524,9 @@ const GirlSvg = ({ props, shirtColorForSvg }) => (
       d="M313 797 L366 797 L366 828 L313 828 Z"
     />
 
-    {/* =====================================================
+    {/* ============
         LEFT SHOE
-        ===================================================== */}
+        ============ */}
 
     <path
       fill={shirtColorForSvg.bottomColor || "#FFFFFF"}
@@ -626,9 +580,9 @@ const GirlSvg = ({ props, shirtColorForSvg }) => (
       strokeLinecap="round"
     />
 
-    {/* =====================================================
+    {/* ============
         RIGHT SHOE
-        ===================================================== */}
+        ============ */}
 
     <path
       fill={shirtColorForSvg.bottomColor || "#FFFFFF"}
@@ -684,24 +638,9 @@ const GirlSvg = ({ props, shirtColorForSvg }) => (
 
     {/* ===================== WATCH ===================== */}
 
-    <rect
-      x="394"
-      y="443"
-      width="30"
-      height="42"
-      rx="8"
-      fill="#24282D"
-    />
+    <rect x="394" y="443" width="30" height="42" rx="8" fill="#24282D" />
 
-    <rect
-      x="399"
-      y="450"
-      width="20"
-      height="23"
-      rx="4"
-      fill="#91D9FF"
-    />
-
+    <rect x="399" y="450" width="20" height="23" rx="4" fill="#91D9FF" />
   </svg>
 );
 
