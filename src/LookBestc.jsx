@@ -371,12 +371,7 @@ Return only JSON.
         <div className="skin-input-box">
           {/* Custom Color Picker */}
 
-          <input
-            type="color"
-            value={skinColor}
-            onChange={handleSkinColorChange}
-            title="Choose custom skin color"
-          />
+        
 
           {/* Selected Skin Circle */}
 
@@ -401,7 +396,7 @@ Return only JSON.
             type="button"
             className="find-colors-btn"
             onClick={fetchAIResponse}
-            disabled={isLoading}
+            diabled={isLoading}
           >
             {isLoading ? (
               <>

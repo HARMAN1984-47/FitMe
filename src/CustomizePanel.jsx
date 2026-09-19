@@ -16,11 +16,9 @@ const topColorsArray = [
   "#FF0000",
   "#00FF00",
   "#0000FF",
-  "var(--bg-card)F00",
   "#FF00FF",
   "#00FFFF",
   "#000000",
-  "var(--bg-card)FFF",
   "#808080",
   "#FFA500",
   "#800080",
@@ -38,11 +36,9 @@ const bottomColorsArray = [
   "#FF0000",
   "#00FF00",
   "#0000FF",
-  "var(--bg-card)F00",
   "#FF00FF",
   "#00FFFF",
   "#000000",
-  "var(--bg-card)FFF",
   "#808080",
   "#FFA500",
   "#800080",
@@ -118,42 +114,7 @@ export default function CustomizePanel({
       </div>
 
       {/* Hair Style */}
-      <div className="section">
-        <div className="section-title">
-          <h3>Hair Style</h3>
-          <button>See All</button>
-        </div>
-
-        <div className="hair-grid">
-          <div className="hair-card active">
-            <img
-              src="https://www.kaya.in/media/.renditions/wysiwyg/textured-crop-hairstyle-men-2026.png"
-              alt=""
-            />
-          </div>
-
-          <div className="hair-card">
-            <img
-              src="https://images.squarespace-cdn.com/content/v1/5f53c1f998bf2728f8ed3646/a180b4cb-54d9-4314-b864-a2bce33df7c1/Disconnected-Undercut.jpg?format=1500w"
-              alt=""
-            />
-          </div>
-
-          <div className="hair-card">
-            <img
-              src="https://images.squarespace-cdn.com/content/v1/5f53c1f998bf2728f8ed3646/e176021f-e3e1-4bfb-b7a4-37ee2adbaab4/Surfer.jpg?format=1500w"
-              alt=""
-            />
-          </div>
-
-          <div className="hair-card">
-            <img
-              src="https://images.squarespace-cdn.com/content/v1/5f53c1f998bf2728f8ed3646/73135b1e-533d-4324-9ad2-c8e166cb042e/Mid-Length-Big-Bang.jpg?format=1500w"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
+     
 
       {/* Top Wear */}
       <div className="section">
@@ -287,28 +248,6 @@ export default function CustomizePanel({
           </button>
         </div>
 
-        <div className="cloth-grid">
-          <div className="cloth-card">
-            <img
-              src="https://www.shoezone.com/Images/Static/blog/the-7-types-of-shoes-every-man-should-own-11.jpg"
-              alt=""
-            />
-          </div>
-
-          <div className="cloth-card active">
-            <img
-              src="https://www.shoezone.com/Images/Static/blog/the-7-types-of-shoes-every-man-should-own-14.jpg"
-              alt=""
-            />
-          </div>
-
-          <div className="cloth-card">
-            <img
-              src="https://cdn.media.amplience.net/i/harryrosen/20164359075?$block-grid-1x4$&maxW=1920&fmt=auto"
-              alt=""
-            />
-          </div>
-        </div>
 
         <h3 style={{ marginTop: "20px" }}>Color</h3>
         <div className="colors" style={{ marginTop: "20px" }}>
